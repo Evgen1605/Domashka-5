@@ -20,12 +20,12 @@ int[] GetArray(int size, int minValue, int maxValue) // Задаём случа�
 }
 
 int[] array = GetArray(4, 100, 1000);
-Console.WriteLine($"[{String.Join(", ", array)}]");
+Console.WriteLine($"[{String.Join(", ", array)}]"); //Выводим случайный массив
 
 int count = 0;
-for (int i = 0; i < array.Length; i++)
+for (int i = 0; i < array.Length; i++) // циклом проходим по массиву
 {
-  if (array[i] % 2 == 0)
+  if (array[i] % 2 == 0)  // из массива вычлиняем чётные числа 
   count++;
 }
 
