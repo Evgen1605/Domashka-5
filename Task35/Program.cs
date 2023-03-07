@@ -16,23 +16,25 @@ Console.WriteLine($"[{String.Join(", ", array)}]"); //Выводим случа�
 
 Console.WriteLine($"Количество элементов в отрезке [10;99] = {GetCountElements(array, 10, 99)}");
 
-int[] GetArray(int size, int minValue, int maxValue)
+int[] GetArray(int size, int minValue, int maxValue)// функция для заполнения массива случайными числами
 {
-  int[] res = new int[size];
+  int[] res = new int[size];// объявляем массив
 
   for (int i = 0; i < size; i++)
   {
-    res[i] = new Random().Next(minValue, maxValue + 1);
+    res[i] = new Random().Next(minValue, maxValue + 1);// заполняем массив рандомными числами
   }
   return res;
 }
 
-int GetCountElements(int[] array, int leftRange, int rigthRange)
+
+int GetCountElements(int[] array, int leftRange, int rigthRange)// функцией ещем элементы массива лежащие в определённом отрезке а вход принимает массив, и в каком диапозоне будет проверка, например leftRange = 10, а rigthRange = 99 
 {
-  int count = 0;
-  foreach (var item in array)
+  int count = 0; // переменная котрая будет считать сколько чисел лежит в заданном отрезке
+  foreach (var item in array)// перебираем элементы массива
   {
-    if (item >= leftRange && item <= rigthRange) count++;
+    if (item >= leftRange && item <= rigthRange)// проверяем есть ли элемент массива в заданном диапазоне если true то
+    count++;//добавляем в счётчик 
   }
-  return count;
+  return count;// по завершению всего цикла, возвращаем посчитанные числа
 }

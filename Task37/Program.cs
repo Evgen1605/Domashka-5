@@ -13,28 +13,27 @@ int[] baseArray = GetArrayFromString(elements);
 
 Console.WriteLine(String.Join(" ", ResultArray(baseArray)));
 
-int[] GetArrayFromString(string stringArray)
+int[] GetArrayFromString(string stringArray)// функция переводит из строки в массив чисел функция возвращает массив, а на вход принимает строку которую ввёл пользователь
 {
-  string[] nums = stringArray.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-  int[] res = new int[nums.Length];
-
-  for (int i = 0; i < nums.Length; i++)
+  string[] nums = stringArray.Split(" ", StringSplitOptions.RemoveEmptyEntries);// метод .Split братная методу .Join, если Join- объеденяет массив, то Split- разоединяет, создали массив строк, разоединили его по пробелу (" ",) и записали его в переменную nums
+  int[] res = new int[nums.Length];// чтобы работать с числами нужно строку конвертировать в числа, здесь создаём массив вкоторый кладём длинну массива int[nums.Length]
+  for (int i = 0; i < nums.Length; i++)// запускаем цикл на длину массива 
   {
-    res[i] = int.Parse(nums[i]);
+    res[i] = int.Parse(nums[i]);// переводим в массив в числа используя int.Parse(nums[i])  записываем их на ту же позицию
   }
-  return res;
+  return res;// выводим результат
 }
 
 int[] ResultArray(int[] array)
 {
-  int size = (array.Length + 1) / 2;
-  //    if (array.Length % 2 == 1) size++;
-  int[] result = new int[size];
-  for (int i = 0; i < array.Length / 2; i++)
+  int size = (array.Length + 1) / 2;// например массив состоит из 5 элементов, получаем массив на 3 элемента, ((5 + 1) / 2 = 3) или если будет 6 то тоже получаем масссив на 3 элемента ((6 + 1) / 2 = 3), (т.к 7 / 2 = 3 без остатка) такая запись сокращает код, (чтобы не писать проверку как на 30 строке)
+  //    if (array.Length % 2 == 1) size++; // если кол-во элементов нечётное, то size увиличиваем на 1
+  int[] result = new int[size];// создаём массив на size элементов
+  for (int i = 0; i < array.Length / 2; i++)// запустили цикл до середины, т.к будем складывать первый и последний элемент, второй и предпоследний и т.д. например массив [1,2,3,4,5] (получается что array.Length делаем 2 итерации)
   {
-
-    result[i] = array[i] * array[array.Length - 1 - i];
+    result[i] = array[i] * array[array.Length - 1 - i];// result[i] - складываем произведение элементов массива array[0]- у нас это 1, array[array.Length - 1 - i]- это (5-1-0)=4 т.е 4 это индекс массива у нас это 5, (1*5=5), вторая итерация array[1] = 2 (5-1-1)=3, 3 индексом у нас 4, (2*4=8) 
   }
-  if (array.Length % 2 == 1) result[size - 1] = array[array.Length / 2];
-  return result;
+  if (array.Length % 2 == 1)// проверяем если массив нечётный т.к в нашем примере нечетный массив и он будет на 3 элемента (это мы проверили в 29 строке) то  
+    result[size - 1] = array[array.Length / 2];// result[size - 1]- у нас он равен 3, array[5 / 2]=2, (2 это индекс массива у нас это 3), в конце получившегося масива записываем середину массива (3) 
+  return result;// возвращаем массив [5,8,3]
 }

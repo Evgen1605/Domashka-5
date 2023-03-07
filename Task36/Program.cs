@@ -9,24 +9,28 @@
 Console.Clear();
 
 
-int[] GetArray(int size, int minValue, int maxValue) // Задаём случайные числа массива
+int[] GetArray(int size, int minValue, int maxValue)// функция для заполнения массива случайными числами
 {
-  int[] res = new int[size];
+  int[] res = new int[size];// объявляем массив
 
   for (int i = 0; i < size; i++)
   {
-    res[i] = new Random().Next(minValue, maxValue + 1);
+    res[i] = new Random().Next(minValue, maxValue + 1);// заполняем массив рандомными числами
   }
   return res;
 }
 
-int[] array = GetArray(4, 1, 10);
+int[] array = GetArray(10, -10, 10);
 Console.WriteLine($"[{String.Join(", ", array)}]"); //Выводим случайный массив
 
-int sum = 0;
-for (int i = 1; i < array.Length; i+= 2) // циклом проходим по массиву
+int SumOfElementsInOddPositions(int[] array)// функция на вход принимает массив
 {
-  sum = sum + array[i]; 
+  int sum = 0;// создаём переменную в которой будем считать сумму чисел
+  for (int i = 1; i < array.Length; i += 2) // циклом проходим по массиву (i += 2)- означает что будем прибавлять только чётные числа массива
+  {
+    sum += array[i];//в переменную прибавляем элементы массива 
+  }
+  return sum;// после прохождения всего цикла, возвращаем всю сумму чисел
 }
 
-Console.WriteLine($"всего {array.Length} чисел, сумма элементов на нечётных позициях = {sum}");
+Console.WriteLine($"всего {array.Length} чисел, сумма элементов на нечётных позициях = {SumOfElementsInOddPositions(array)}");// ввыводим в консоль
